@@ -1,0 +1,86 @@
+#!/bin/bash
+
+start() {
+    sudo /etc/rc.d/$1 start;
+}
+
+stop() {
+    sudo /etc/rc.d/$1 stop;
+}
+
+restart() {
+    sudo /etc/rc.d/$1 restart;
+}
+
+extract () {
+    if [ -f $1 ]; then
+	case $1 in
+            *.tar.bz2)   tar xvjf $1    ;;
+            *.tar.gz)    tar xvzf $1    ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       rar x $1       ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xvf $1     ;;
+            *.tbz2)      tar xvjf $1    ;;
+            *.tgz)       tar xvzf $1    ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)           echo "don't know how to extract '$1'..." ;;
+	esac
+    else
+	echo "'$1' is not a valid file!"
+    fi
+}
+
+google() {
+    url=$(echo http://google.com/search?q=$(echo "$@" | sed s/\ /+/g))
+    lynx -accept_all_cookies $url
+}
+
+macbuntu() {
+    sudo mkfs.vfat -F 32 -n MACBUNTU /dev/sdb1
+    devmon &
+    sudo unetbootin &
+}
+
+webs() {
+    lein new webs "$1"
+    cd "$1"
+    emacs -nw -f clojure-web-jack-in
+}
+
+cc() {
+    sed 's/\s//g' "$1" | wc -m
+}
+
+couch-get() {
+    url=$(cat ~/.couchrc)"/$1"
+    curl -s "$url"
+}
+
+couch-post() {
+    url=$(cat ~/.couchrc)"/$1"
+    curl -sX POST "$url" -H "Content-Type: application/json" \
+	-d "$2"
+}
+
+couch-put() {
+    url=$(cat ~/.couchrc)"/$1"
+    curl -sX PUT "$url" -H "Content-Type: application/json" \
+	-d "$2"
+}
+
+couch-upload() {
+    doc=$(couch-get "$1")
+    echo "doc = $doc"
+    rev=$(underscore --data "$doc" extract _rev)
+    echo "rev = $rev"
+    echo "rev w/o quotes = ${rev//\"}"
+    file="$2"
+    safe_file=${file// /-}
+    echo "file name = $safe_file"
+    url=$(cat ~/.couchrc)"/$1/$safe_file?rev=${rev//\"}"
+    echo "$url"
+    curl -sX PUT "$url" -H "Content-Type: $3" --data-binary @"$file"
+}

@@ -1,0 +1,33 @@
+#!/bin/sh
+##
+## ~/.bash_profile
+##
+
+# Source .bashrc
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+## local bin has highest precedence on $PATH
+PATH="$HOME/bin:$HOME/go/bin:$HOME/.gem/ruby/1.9.1/bin:$PATH"
+
+## Set CLOJURESCRIPT_HOME environment variable
+export CLOJURESCRIPT_HOME="$HOME/src/github/clojurescript"
+
+## Set LUA_INIT to load useful functions into the REPL
+export LUA_INIT="@$HOME/.luarc"
+
+## Set GITHUB_HOME to be able to use git-get and update-github
+export GITHUB_HOME="$HOME/gh"
+
+## Set GOPATH for downloading Golang packages, etc
+export GOPATH="$HOME/go:$GOPATH"
+
+## Set capslock to toggle kbmap
+## [commented out b/c i am using xorg.conf to configure this]
+#setxkbmap us,ru -option  grp:caps_toggle,grp;etc
+
+## Set TERM var so that tmux colors work
+[ -n "$TMUX" ] && export TERM=screen-256color
+
+if [[ -z $DISPLAY && $(tty) = /dev/tty1 ]]; then
+    startx
+fi

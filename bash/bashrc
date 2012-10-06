@@ -1,0 +1,36 @@
+#!/binbash
+
+# Check for an interactive session
+[ -z "$PS1" ] && return
+
+# Ubuntu-like prompt
+PS1='\[\e[01;33m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\] \$ '
+
+# To make stuff work in tmux
+#export TERM='xterm-256color'
+
+# Make Emacs default editor
+export EDITOR='/usr/bin/emacs -nw'
+
+# Make Chromium default browser
+export BROWSER='/usr/bin/chromium'
+
+# Leiningen autocomplete (from technomancy's dotbashrc)
+if [ -f $HOME/gh/leiningen/bash_completion.bash ]; then
+    . $HOME/gh/leiningen/bash_completion.bash
+fi
+
+# Linux System Administration Recipes (Apress)
+shopt -s histappend                     # append history across multiple sessions
+PROMPT_COMMAND='history -n;history -a'  # real-time appending
+HISTSIZE=100000
+HISTFILESIZE=100000
+
+# Load aliases and functions if you got 'em
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi

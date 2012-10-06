@@ -1,0 +1,40 @@
+#!/bin/bash
+
+alias xterm='xterm -ti 100' # emacs isn't showing colors properly for VT420
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias lla='ll -A'
+alias llr='ll -R'
+alias llt='ll -t'
+alias llrt='ll -Rt'
+alias t='tree -aC --dirsfirst'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias mkdir='mkdir -p'
+alias grep='grep --color'
+alias f='find -type f -iname'
+alias rs='rsync -aP'
+alias em='emacs -nw'
+alias emon='emacs --daemon'
+alias emc='emacsclient -t'
+alias ducks='sudo du -cks * .[^.]* ..?* | sort -rn | head -21'
+alias duck='sudo du -chs -BG * .[^.]* ..?* | sort -rn | head -21'
+alias sup='sudo netstat -nap | grep 0.0.0.0'
+alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
+alias srvr='twistd -n web --path .' # serve the current directory on localhost:8080 w/ twistd
+alias ygeta='youtube-dl -t --extract-audio --audio-format mp3' # grab audio off youtube
+alias ygetv='youtube-dl --prefer-free-formats -t' # grab video from youtube
+alias pacman='sudo pacman'
+alias pacsyu='pacman -Syu'
+alias paclist='pacman -Ql'
+alias pacinfo='pacman -Qi'
+alias pacfile='pacman -Qo'
+alias paclog='tail -50 /var/log/pacman.log'
+alias wget='wget -c'
+alias socks='ssh -ND 9999'
+alias hostip='wget http://checkip.dyndns.org/ -O - -o /dev/null | cut -d: -f 2 | cut -d\< -f 1'
+alias fixawesome='wmname LG3D'
+alias impress='rs ~/.templates/impress/ .'
+alias wotd='curl -s http://feeds.reference.com/DictionarycomWordOfTheDay | sed "/description.*:.*</!d; s/.*>\(.*\)<.*/\1/"'
+alias syncdroid='rsync -aP ~/to-go /media/sdb1-usb-LGE_Android_Plat/'
+
