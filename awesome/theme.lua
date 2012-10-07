@@ -6,7 +6,7 @@ theme = {}
 
 theme.font          = "inconsolata 9"
 
-theme.bg_normal     = "#222222"
+theme.bg_normal     = "#1f0609"
 theme.bg_focus      = "#573732" -- main 'active' background color
 theme.bg_urgent     = "#8e3732"
 theme.bg_minimize   = "#444444"
