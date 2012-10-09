@@ -59,20 +59,20 @@ cc() {
 # a CouchDB instance
 
 couch-get() {
-    url=$(cat ~/.couchrc)"/$1"
+    url=$(<~/.couchrc)"/$1"
 
     curl -s "$url"
 }
 
 couch-post() {
-    url=$(cat ~/.couchrc)"/$1"
+    url=$(<~/.couchrc)"/$1"
 
     curl -sX POST "$url" -H "Content-Type: application/json" \
 	-d "$2"
 }
 
 couch-put() {
-    url=$(cat ~/.couchrc)"/$1"
+    url=$(<~/.couchrc)"/$1"
 
     curl -sX PUT "$url" -H "Content-Type: application/json" \
 	-d "$2"
@@ -83,7 +83,7 @@ couch-upload() {
     rev=$(underscore --data "$doc" extract _rev)
     file="$2"
     safe_file=${file// /-}
-    url=$(cat ~/.couchrc)"/$1/$safe_file?rev=${rev//\"}"
+    url=$(<~/.couchrc)"/$1/$safe_file?rev=${rev//\"}"
 
     curl -sX PUT "$url" -H "Content-Type: $3" --data-binary @"$file"
 }
