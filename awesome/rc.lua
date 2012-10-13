@@ -125,8 +125,14 @@ vicious.register(mydl, vicious.widgets.net, ' <span color="#5d7d7f"> ↘ ${wlan0
 myuptime = widget({ type = "textbox" })
 vicious.register(myuptime, vicious.widgets.uptime,
 		 function (widget, args)
-		    return string.format(' <span color="#8aaac6">(%2d:%02d )</span>   ',
-					 args[2], args[3])
+		    if args[1] == 0 then
+		       return string.format(' <span color="#87b78b">(%2d:%02d )</span>   ',
+					    args[2], args[3])
+		    elseif args[1] == 1 then
+		       return ' <span color="#eeefea">one fucking day and '..args[2]..' hour[s]</span>   '
+		    else
+		       return ' <span color="#fcbf9f">'..args[1]..' fucking days!</span>   '
+		    end
 		 end, 61)
 
 mycpu = widget({ type = "textbox" })
