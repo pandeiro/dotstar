@@ -120,7 +120,17 @@ vicious.register(mybattery, vicious.widgets.bat,
     end, 17, "BAT1")
 
 mydl = widget({ type = "textbox" })
-vicious.register(mydl, vicious.widgets.net, ' <span color="#5d7d7f"> ↘ ${wlan0 down_kb} ↗ ${wlan0 up_kb}</span> ', 3)
+vicious.register(mydl, vicious.widgets.net,
+		 function(widget, args)
+		    down = tonumber(args['{wlan0 down_kb}'])
+		    up = tonumber(args['{wlan0 up_kb}'])
+		    function color(v)
+		       val = tonumber(v)
+		       result = val > 300 and '#eeefea' or val > 40 and '#aed398' or '#5d7d7f'
+		       return result
+		    end
+		    return ' <span color="'..color(down)..'"> ↘ '..down..'</span> '..'<span color="'..color(up)..'"> ↗ '..up..'</span> '
+		 end, 3)
 
 myuptime = widget({ type = "textbox" })
 vicious.register(myuptime, vicious.widgets.uptime,
