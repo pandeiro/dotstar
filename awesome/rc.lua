@@ -272,9 +272,6 @@ globalkeys = awful.util.table.join(
     -- Hotkey: launch gmail in chromium webapp mode
     awful.key({ modkey, "Shift"   }, "m",
         function () awful.util.spawn('chromium --app=http://gmail.com') end),
-    -- Hotkey: turn on international keyboard mapping with i, switch to US with I
-    awful.key({ modkey,           }, "i", function () awful.util.spawn('intl') end),
-    awful.key({ modkey, "Shift"   }, "i", function () awful.util.spawn('us') end),
     -- Hotkey: turn off monitor with F2
     awful.key({ modkey,           }, "F2",      
         function () awful.util.spawn('xterm -e xset dpms force off') end),
