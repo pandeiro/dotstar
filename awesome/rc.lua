@@ -275,6 +275,11 @@ globalkeys = awful.util.table.join(
     -- Hotkey: turn off monitor with F2
     awful.key({ modkey,           }, "F2",      
         function () awful.util.spawn('xterm -e xset dpms force off') end),
+    -- Hotkey? screenshot
+    awful.key({                   }, "Print",
+	function()
+	   awful.util.spawn("scrot -e 'mv $f ~/img/screens/ 2>/dev/null'")
+	end),
 
     awful.key({ modkey,           }, "j",
         function ()
