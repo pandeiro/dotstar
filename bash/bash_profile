@@ -3,6 +3,9 @@
 ## ~/.bash_profile
 ##
 
+# Source /etc/profile
+[[ -f /etc/profile ]] && . /etc/profile
+
 # Source .bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
