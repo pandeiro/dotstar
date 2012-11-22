@@ -37,4 +37,6 @@ alias fixawesome='wmname LG3D'
 alias impress='rs ~/.templates/impress/ .'
 alias wotd='curl -s http://feeds.reference.com/DictionarycomWordOfTheDay | sed "/description.*:.*</!d; s/.*>\(.*\)<.*/\1/"'
 alias syncdroid='rsync -aP ~/to-go /media/sdb1-usb-LGE_Android_Plat/'
+alias create='~/android/phonegap/lib/android/bin/create'
+
 
