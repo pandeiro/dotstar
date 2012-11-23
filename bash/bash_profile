@@ -9,9 +9,6 @@
 # Source .bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-## local bin has highest precedence on $PATH
-PATH="$HOME/bin:$HOME/go/bin:$HOME/.gem/ruby/1.9.1/bin:$PATH"
-
 ## Set CLOJURESCRIPT_HOME environment variable
 export CLOJURESCRIPT_HOME="$HOME/src/github/clojurescript"
 
@@ -22,7 +19,11 @@ export LUA_INIT="@$HOME/.luarc"
 export GITHUB_HOME="$HOME/gh"
 
 ## Set GOPATH for downloading Golang packages, etc
-export GOPATH="$HOME/go:$GOPATH"
+GOPATHHOME="$HOME/rt/go"
+export GOPATH="$GOPATHHOME:$GOPATH"
+
+## local bin has highest precedence on $PATH
+PATH="$HOME/bin:$GOPATHHOME/bin:$HOME/.gem/ruby/1.9.1/bin:$PATH"
 
 ## Set capslock to toggle kbmap
 ## [commented out b/c i am using xorg.conf to configure this]
