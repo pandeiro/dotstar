@@ -3,11 +3,11 @@
 # Disable touchpad when typing
 syndaemon -t -k -i 2 -d &
 
-# Start Emacs and open main org file
-em org/life.org hack/ org/ &
+# Preprocess .Xresources
+xrdb -merge ~/.Xresources &
 
-# Start Chromium
-chromium &
+# Start Emacs server
+emacs --daemon
 
 # Start awesome
 exec ck-launch-session awesome
