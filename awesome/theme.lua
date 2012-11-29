@@ -2,24 +2,64 @@
 -- Default awesome theme --
 ---------------------------
 
+-- Colors
+colors = {}
+
+colors.theme_name	= "French Girl" -- * came from this, plus a bunch of others
+colors.link		= "https://kuler.adobe.com/#themeID/2122513"
+
+colors.black		= "#222222"
+colors.black_dark       = "#000000"
+colors.white            = "#FAFAFA"
+colors.white_dark	= "#DAD7C7" -- *
+colors.yellow           = "#D8C67A"
+colors.yellow_dark      = "#BF996B" -- *
+colors.red              = "#A61C1C" -- *
+colors.red_dark         = "#760000"
+colors.blue             = "#58838C" -- *
+colors.blue_dark        = "#223456"
+colors.green            = "#558F63"
+colors.green_dark       = "#303D40"
+colors.orange           = "#BF5841" -- *
+colors.orange_dark      = "#481200"
+colors.pink             = "#661255"
+colors.pink_dark        = "#443399"
+
+colors.base		= colors.yellow_dark
+colors.base_alt		= colors.white_dark
+colors.text		= colors.blue
+colors.text_alt		= colors.green_dark
+colors.highlight	= colors.orange
+colors.highlight_alt	= colors.red
+
+-- Theme required
 theme = {}
-
 theme.font          = "inconsolata 9"
-
-theme.bg_normal     = "#1f0609"
-theme.bg_focus      = "#573732" -- main 'active' background color
-theme.bg_urgent     = "#8e3732"
-theme.bg_minimize   = "#444444"
-
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
-
+theme.bg_normal     = colors.text
+theme.bg_focus      = colors.base_alt -- main 'active' background color
+theme.bg_urgent     = colors.highlight
+theme.bg_minimize   = colors.base
+theme.fg_normal     = colors.base_alt
+theme.fg_focus      = colors.text
+theme.fg_urgent     = colors.base_alt
+theme.fg_minimize   = colors.base_alt
 theme.border_width  = "1"
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+theme.border_normal = colors.black
+theme.border_focus  = colors.base_alt
+theme.border_marked = colors.highlight_alt
+
+-- Theme extra for widgets
+theme.uptime		= colors.orange_dark
+theme.uptime_insane	= colors.orange
+theme.battery_high	= colors.green_dark
+theme.battery_mid	= colors.white_dark
+theme.battery_low	= colors.red
+theme.cpu_max		= colors.orange
+theme.cpu_high		= colors.white
+theme.cpu_normal	= colors.white_dark
+theme.xfer_max		= colors.yellow
+theme.xfer_high		= colors.white
+theme.xfer_normal	= colors.white_dark
 
 -- There are other variable sets
 -- overriding the default one when
@@ -74,7 +114,7 @@ theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/defau
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "awsetbg /home/mu/img/colherao.jpg" }
+theme.wallpaper_cmd = { "awsetbg /home/mu/img/ana-and-pablo.jpg" }
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
