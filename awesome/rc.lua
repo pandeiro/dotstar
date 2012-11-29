@@ -107,15 +107,18 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.arch_icon),
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
 
+function span(c, v)
+   return ' <span color="'..c..'">'..v..'</span> '
+end
 
 -- Custom widgetry
 mybattery = widget({ type = "textbox" })
 vicious.register(mybattery, vicious.widgets.bat, 
     function (widget, args)
         pct = args[2]
-        if tonumber(pct) > 79 then return '  '..pct..'% '
-        elseif tonumber(pct) > 19 then return '  <span color="#ae9f8c">'..pct..'%</span> '
-        else return '  <span color="#de7443">'..pct..'%</span> '
+        if tonumber(pct) > 79 then return span(beautiful.battery_high, pct..'%')
+        elseif tonumber(pct) > 19 then return span(beautiful.battery_mid, pct..'%')
+        else return span(beautiful.battery_low, pct..'%')
         end
     end, 17, "BAT1")
 
@@ -126,34 +129,37 @@ vicious.register(mydl, vicious.widgets.net,
 		    up = tonumber(args['{wlan0 up_kb}'])
 		    function color(v)
 		       val = tonumber(v)
-		       result = val > 300 and '#eeefea' or val > 40 and '#aed398' or '#5d7d7f'
+		       result = val > 300 and beautiful.xfer_max
+			  or val > 40 and beautiful.xfer_high
+			  or beautiful.xfer_normal
 		       return result
 		    end
-		    return ' <span color="'..color(down)..'"> ↘ '..down..'</span> '..'<span color="'..color(up)..'"> ↗ '..up..'</span> '
+		    return span(color(down), ' ↘ '..down)..span(color(up), ' ↗ '..up)
 		 end, 3)
 
 myuptime = widget({ type = "textbox" })
 vicious.register(myuptime, vicious.widgets.uptime,
 		 function (widget, args)
 		    if args[1] == 0 then
-		       return string.format(' <span color="#87b78b">(%2d:%02d )</span>   ',
-					    args[2], args[3])
+		       time = string.format('%2d:%02d  ', args[2], args[3])
+		       return span(beautiful.uptime, time)
 		    elseif args[1] == 1 then
-		       return ' <span color="#eeefea">one fucking day and '..args[2]..' hour[s]</span>   '
+		       return span(beautiful.uptime_insane,
+				   'one fucking day and '..args[2]..' hour[s] ')
 		    else
-		       return ' <span color="#fcbf9f">'..args[1]..' fucking days!</span>   '
+		       return span(beautiful.uptime_insane, args[1]..' fucking days! ')
 		    end
 		 end, 61)
 
 mycpu = widget({ type = "textbox" })
 vicious.register(mycpu, vicious.widgets.cpu,
  		 function(widget, args)
- 		    result = ' '
+		    result = ' '
 		    for i=2,5 do
 		       cpu_num = i - 1
-		       if args[i] > 60 then result = result .. ' <span color="#ffbd7e">'..cpu_num..'</span> '
-		       elseif args[i] > 20 then result = result .. ' <span color="#cadece">'..cpu_num..'</span> '
-		       else result = result .. ' <span color="#5d7d7f">'..cpu_num..'</span> '
+		       if args[i] > 60 then result = result..span(beautiful.cpu_max, cpu_num)
+		       elseif args[i] > 20 then result = result..span(beautiful.cpu_high, cpu_num)
+		       else result = result..span(beautiful.cpu_normal, cpu_num)
 		       end
 		    end
 		    return result
