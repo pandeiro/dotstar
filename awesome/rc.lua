@@ -270,6 +270,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
+    -- Hotkey: emacs
+    awful.key({ modkey,           }, "e",
+	function () awful.util.spawn('em') end),
     -- Hotkey: chromium & firefox
     awful.key({ modkey,           }, "b",      
         function () awful.util.spawn(browser) end),
