@@ -3,6 +3,7 @@ local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
+require("awful.remote") -- necessary for awesome-client to work
 -- Widget and layout library
 local wibox = require("wibox")
 -- Theme handling library
@@ -10,6 +11,8 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+
+local vicious = require("vicious")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -38,12 +41,12 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("/home/mu/.config/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
+editor = os.getenv("EDITOR") or "emacsclient"
+editor_cmd = editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -97,11 +100,13 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+                                    { "suspend", "sudo pm-suspend" },
+                                    { "reboot",  "sudo reboot" },
+                                    { "poweroff", "sudo poweroff" }
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+mylauncher = awful.widget.launcher({ image = beautiful.arch_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
@@ -111,6 +116,51 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
+
+-- My custom widgets
+local function span(c, v)
+   return ' <span color="'..c..'">'..v..'</span> '
+end
+
+local mycpu = wibox.widget.textbox()
+vicious.register(mycpu, vicious.widgets.cpu,
+ 		 function(widget, args)
+		    result = ' '
+		    for i=2,5 do
+		       cpu_num = i - 1
+		       if args[i] > 60 then result = result..span(beautiful.cpu_max, cpu_num)
+		       elseif args[i] > 20 then result = result..span(beautiful.cpu_high, cpu_num)
+		       else result = result..span(beautiful.cpu_normal, cpu_num)
+		       end
+		    end
+		    return result
+		 end, 1)
+
+local mybattery = wibox.widget.textbox()
+vicious.register(mybattery, vicious.widgets.bat, 
+    function (widget, args)
+        pct = args[2]
+        if tonumber(pct) > 79 then return span(beautiful.battery_high, pct..'%')
+        elseif tonumber(pct) > 19 then return span(beautiful.battery_mid, pct..'%')
+        else return span(beautiful.battery_low, pct..'%')
+        end
+    end, 17, "BAT1")
+
+local mydl = wibox.widget.textbox()
+mydl.fit = function(mydl, w, h) return 136, h end
+vicious.register(mydl, vicious.widgets.net,
+		 function(widget, args)
+		    down = tonumber(args['{wlan0 down_kb}'])
+		    up = tonumber(args['{wlan0 up_kb}'])
+		    function color(v)
+		       val = tonumber(v)
+		       result = val > 300 and beautiful.xfer_max
+			  or val > 40 and beautiful.xfer_high
+			  or beautiful.xfer_normal
+		       return result
+		    end
+		    return span(color(down), ' ↘ '..down)..span(color(up), ' ↗ '..up)
+		 end, 3)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -189,6 +239,9 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(mydl)
+    right_layout:add(mybattery)
+    right_layout:add(mycpu)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -246,6 +299,16 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+
+    -- Additional keys for applications
+    awful.key({ modkey,           }, "e",  function () awful.util.spawn('em') end),
+    awful.key({ modkey,           }, "b",  function () awful.util.spawn('chromium') end),
+
+    -- Additional keys for screen off and screenshot
+    awful.key({ modkey,           }, "F2",
+	      function () awful.util.spawn('xterm -e xset dpms force off') end),
+    awful.key({ modkey,           }, "Print",
+	      function () awful.util.spawn("scrot -e 'mv $f ~/img/screens/ 2>/dev/null'") end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
@@ -346,7 +409,8 @@ awful.rules.rules = {
     { rule = { },
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
+                     size_hints_honor = false,
+		     focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer" },
