@@ -51,7 +51,11 @@ webs() {
 }
 
 cc() {
-    sed 's/\s//g' "$1" | wc -m
+    # sed was the wrong tool for removing all whitespace, b/c of \n
+    #sed 's/\s//g' "$1" | wc -m
+
+    # tr is a better (simpler) tool for this
+    cat "$1" | tr -d [:space:] | wc -m
 }
 
 # These functions require underscore-cli (npm install -g underscore-cli)
