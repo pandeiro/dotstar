@@ -38,5 +38,7 @@ alias impress='rs ~/.templates/impress/ .'
 alias wotd='curl -s http://feeds.reference.com/DictionarycomWordOfTheDay | sed "/description.*:.*</!d; s/.*>\(.*\)<.*/\1/"'
 alias syncdroid='rsync -aP ~/to-go /media/sdb1-usb-LGE_Android_Plat/'
 alias jspretty='underscore --color print'
+alias n7m='go-mtpfs /media/nexus7 >/dev/null 2>&1 &'
+alias n7u='fusermount -u /media/nexus7'
 
 
