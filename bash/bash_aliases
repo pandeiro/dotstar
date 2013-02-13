@@ -40,5 +40,8 @@ alias syncdroid='rsync -aP ~/to-go /media/sdb1-usb-LGE_Android_Plat/'
 alias jspretty='underscore --color print'
 alias n7m='go-mtpfs /media/nexus7 >/dev/null 2>&1 &'
 alias n7u='fusermount -u /media/nexus7'
+alias n4m='go-mtpfs /media/nexus4 >/dev/null 2>&1 &'
+alias n4u='fusermount -u /media/nexus4'
+
 
 
