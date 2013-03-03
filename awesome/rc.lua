@@ -308,6 +308,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "F2",
 	      function () awful.util.spawn('xterm -e xset dpms force off') end),
     awful.key({ modkey,           }, "Print",
+	      -- TODO: figure out why this stopped working or doesn't work w/ two screens
 	      function () awful.util.spawn("scrot -e 'mv $f ~/img/screens/ 2>/dev/null'") end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
