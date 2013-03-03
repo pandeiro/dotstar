@@ -113,3 +113,9 @@ man() {
 top() {
     colorful top "$@"
 }
+
+# Just do it.
+get-js-libs() {
+    wget http://code.jquery.com/jquery-latest.min.js
+    wget http://d3js.org/d3.v3.min.js
+}
