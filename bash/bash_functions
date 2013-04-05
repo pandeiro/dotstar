@@ -119,3 +119,12 @@ get-js-libs() {
     wget http://code.jquery.com/jquery-latest.min.js
     wget http://d3js.org/d3.v3.min.js
 }
+
+# Record screen
+grab-screen() {
+    if [ $# -ne 2 ]; then
+	echo "USAGE: grab-screen <resolution> <output-filename>"
+    else
+	ffmpeg -f x11grab -s "$1" -r 25 -i :0.0+0,0 -qscale 0 "$2"
+    fi
+}
