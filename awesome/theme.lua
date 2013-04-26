@@ -5,6 +5,8 @@
 -- Colors
 colors = {}
 
+colors.transparent      = "#00000000" -- https://wiki.archlinux.org/index.php/Awesome#Transparency
+
 colors.theme_name	= "Olive Oil" -- * Started April 26, 2013
 colors.link		= ""
 
