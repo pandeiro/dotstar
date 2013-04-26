@@ -36,9 +36,9 @@ colors.highlight_alt	= colors.red
 
 -- Theme required
 theme = {}
-theme.font          = "inconsolata 9"
-theme.bg_normal     = colors.base_alt
-theme.bg_focus      = colors.base_alt -- main 'active' background color
+theme.font          = "inconsolata 12"
+theme.bg_normal     = colors.transparent
+theme.bg_focus      = colors.transparent -- main 'active' background color
 theme.bg_urgent     = colors.highlight
 theme.bg_minimize   = colors.base
 theme.fg_normal     = colors.base_alt
