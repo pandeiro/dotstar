@@ -41,9 +41,9 @@ theme.bg_normal     = colors.transparent
 theme.bg_focus      = colors.transparent -- main 'active' background color
 theme.bg_urgent     = colors.highlight
 theme.bg_minimize   = colors.base
-theme.fg_normal     = colors.base_alt
+theme.fg_normal     = colors.base
 theme.fg_focus      = colors.text
-theme.fg_urgent     = colors.base_alt
+theme.fg_urgent     = colors.black
 theme.fg_minimize   = colors.base_alt
 theme.border_width  = "1"
 theme.border_normal = colors.black
@@ -59,9 +59,9 @@ theme.battery_low	= colors.white
 theme.cpu_max		= colors.white
 theme.cpu_high		= colors.white_dark
 theme.cpu_normal	= colors.blue
-theme.xfer_max		= colors.yellow
+theme.xfer_max		= colors.blue
 theme.xfer_high		= colors.white
-theme.xfer_normal	= colors.white_dark
+theme.xfer_normal	= colors.base_alt
 
 -- There are other variable sets
 -- overriding the default one when
