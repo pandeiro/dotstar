@@ -5,8 +5,8 @@
 -- Colors
 colors = {}
 
-colors.theme_name	= "French Girl" -- * came from this, plus a bunch of others
-colors.link		= "https://kuler.adobe.com/#themeID/2122513"
+colors.theme_name	= "Olive Oil" -- * Started April 26, 2013
+colors.link		= ""
 
 colors.black		= "#222222"
 colors.black_dark       = "#000000"
@@ -131,7 +131,7 @@ theme.layout_spiral  = "/usr/share/awesome/themes/default/layouts/spiralw.png"
 theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 
 theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
-theme.arch_icon = "/home/mu/.config/awesome/arch.png"
+theme.arch_icon = "/home/mu/img/arch.png"
 
 return theme
 
