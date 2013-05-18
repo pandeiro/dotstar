@@ -53,15 +53,15 @@ theme.border_marked = colors.highlight_alt
 -- Theme extra for widgets
 theme.uptime		= colors.orange_dark
 theme.uptime_insane	= colors.orange
-theme.battery_high	= colors.blue_dark
-theme.battery_mid	= colors.yellow
-theme.battery_low	= colors.white
-theme.cpu_max		= colors.white
-theme.cpu_high		= colors.white_dark
-theme.cpu_normal	= colors.blue
-theme.xfer_max		= colors.blue
+theme.battery_high	= colors.green
+theme.battery_mid	= colors.pink
+theme.battery_low	= colors.red
+theme.cpu_max		= colors.green
+theme.cpu_high		= colors.white
+theme.cpu_normal	= colors.white_dark
+theme.xfer_max		= colors.green
 theme.xfer_high		= colors.white
-theme.xfer_normal	= colors.base_alt
+theme.xfer_normal	= colors.white_dark
 
 -- There are other variable sets
 -- overriding the default one when
