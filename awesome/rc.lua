@@ -4,7 +4,6 @@ local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
 require("awful.remote") -- necessary for awesome-client to work
-local awfulwibox = require("awful.wibox")
 
 -- Widget and layout library
 local wibox = require("wibox")
@@ -110,7 +109,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
 
 mylauncher = awful.widget.launcher({ image = beautiful.arch_icon,
                                      menu = mymainmenu })
-mylauncher.fit = function(mylauncher, w, h) return 100, h end
+mylauncher.fit = function(mylauncher, w, h) return 70, h end
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -152,7 +151,7 @@ vicious.register(mybattery, vicious.widgets.bat,
     end, 17, "BAT1")
 
 local mydl = wibox.widget.textbox()
-mydl.fit = function(mydl, w, h) return 136, h end
+mydl.fit = function(mydl, w, h) return 175, h end
 vicious.register(mydl, vicious.widgets.net,
 		 function(widget, args)
 		    down = tonumber(args['{wlan0 down_kb}'])
@@ -218,11 +217,11 @@ mytasklist.buttons = awful.util.table.join(
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
-    mypromptbox[s].fit = function(mypromptbox, w, h) return 360, h end
+    mypromptbox[s].fit = function(mypromptbox, w, h) return 240, h end
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     mylayoutbox[s] = awful.widget.layoutbox(s)
-    mylayoutbox[s].fit = function(mylayoutbox, w, h) return 64, h end
+    mylayoutbox[s].fit = function(mylayoutbox, w, h) return 48, h end
     mylayoutbox[s]:buttons(awful.util.table.join(
                            awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
@@ -230,7 +229,7 @@ for s = 1, screen.count() do
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
-    mytaglist[s].fit = function(mytaglist, w, h) return 240, h end
+    mytaglist[s].fit = function(mytaglist, w, h) return 160, h end
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
@@ -246,7 +245,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
+    -- if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mydl)
     right_layout:add(mycpu)
     right_layout:add(mytextclock)
