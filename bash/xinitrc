@@ -10,4 +10,5 @@ xrdb -merge ~/.Xresources &
 emacs --daemon
 
 # Start awesome
-exec ck-launch-session awesome
+#exec ck-launch-session awesome
+exec awesome
