@@ -102,8 +102,8 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "suspend", "sudo pm-suspend" },
-                                    { "reboot",  "sudo reboot" },
-                                    { "poweroff", "sudo poweroff" }
+                                    { "reboot",  "sudo systemctl reboot" },
+                                    { "poweroff", "sudo systemctl poweroff" }
                                   }
                         })
 
