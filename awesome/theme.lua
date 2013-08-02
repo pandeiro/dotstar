@@ -46,8 +46,8 @@ theme.fg_focus      = colors.text
 theme.fg_urgent     = colors.black
 theme.fg_minimize   = colors.base_alt
 theme.border_width  = "1"
-theme.border_normal = colors.black
-theme.border_focus  = colors.base_alt
+theme.border_normal = colors.base_alt
+theme.border_focus  = colors.orange
 theme.border_marked = colors.highlight_alt
 
 -- Theme extra for widgets
