@@ -22,8 +22,11 @@ export GITHUB_HOME="$HOME/gh"
 GOPATHHOME="$HOME/rt/go"
 export GOPATH="$GOPATHHOME:$GOPATH"
 
+## Set RUBYGEM_HOME for gems with executable commands
+export RUBYGEM_HOME="$HOME/.gem/ruby/2.0.0"
+
 ## local bin has highest precedence on $PATH
-PATH="$HOME/bin:$GOPATHHOME/bin:$HOME/.gem/ruby/1.9.1/bin:$PATH"
+PATH="$HOME/bin:$GOPATHHOME/bin:$RUBYGEM_HOME/bin:$PATH"
 
 ## Set capslock to toggle kbmap
 ## [commented out b/c i am using xorg.conf to configure this]
