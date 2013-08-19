@@ -10,7 +10,7 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 ## Set CLOJURESCRIPT_HOME environment variable
-export CLOJURESCRIPT_HOME="$HOME/src/github/clojurescript"
+export CLOJURESCRIPT_HOME="$HOME/gh/clojurescript"
 
 ## Set LUA_INIT to load useful functions into the REPL
 export LUA_INIT="@$HOME/.luarc"
@@ -26,7 +26,7 @@ export GOPATH="$GOPATHHOME:$GOPATH"
 export RUBYGEM_HOME="$HOME/.gem/ruby/2.0.0"
 
 ## local bin has highest precedence on $PATH
-PATH="$HOME/bin:$GOPATHHOME/bin:$RUBYGEM_HOME/bin:$PATH"
+PATH="$HOME/bin:$CLOJURESCRIPT_HOME/bin:$GOPATHHOME/bin:$RUBYGEM_HOME/bin:$PATH"
 
 ## Set capslock to toggle kbmap
 ## [commented out b/c i am using xorg.conf to configure this]

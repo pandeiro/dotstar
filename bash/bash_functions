@@ -147,3 +147,48 @@ server() {
     # And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
     python2 -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
+
+# Set up a quick D3-based visualization template
+new-d3() {
+    local project="$1"
+    local d3=~/gh/d3/d3.js
+
+    # Create project directory and subdirectories
+    mkdir "$project"
+    cd "$project"
+    mkdir js css
+
+    # Copy D3
+    cp "$d3" js/
+
+    # Create index.html
+    echo "<!doctype html>
+<html>
+  <head>
+    <meta charset=\"utf-8\">
+    <title></title>
+    <link rel=\"stylesheet\" href=\"css/styles.css\" type=\"text/css\">
+  </head>
+  <body>
+    <div id=\"wrapper\"></div>
+    <script src=\"js/d3.js\"></script>
+    <script src=\"skewer\"></script> <!-- live browser eval from Emacs -->
+    <script src=\"js/main.js\"></script>
+  </body>
+</html>" > index.html
+
+    # Create js/main.js
+    touch js/main.js
+
+    # Create css/styles.css
+    touch css/styles.css
+
+    # Open an Emacs window to the project and start skewer for live eval
+    emacsclient --eval \
+	'(find-file "index.html")' \
+	'(find-file "js/main.js")' \
+	'(httpd-start)' '(switch-to-buffer "index.html")' \
+	'(setq httpd-root default-directory)' \
+	'(switch-to-buffer "main.js")' '(js2-mode)' '(skewer-mode)' && \
+    chromium --app=http://localhost:8080/index.html &
+}
