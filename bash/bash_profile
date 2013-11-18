@@ -26,7 +26,7 @@ export GOPATH="$GOPATHHOME:$GOPATH"
 export RUBYGEM_HOME="$HOME/.gem/ruby/2.0.0"
 
 ## local bin has highest precedence on $PATH
-PATH="$HOME/bin:$CLOJURESCRIPT_HOME/bin:$GOPATHHOME/bin:$RUBYGEM_HOME/bin:$PATH"
+PATH="$HOME/bin:$HOME/.cabal/bin:$CLOJURESCRIPT_HOME/bin:$GOPATHHOME/bin:$RUBYGEM_HOME/bin:$PATH"
 
 ## Set capslock to toggle kbmap
 ## [commented out b/c i am using xorg.conf to configure this]
