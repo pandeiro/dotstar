@@ -7,7 +7,7 @@ syndaemon -t -k -i 2 -d &
 xrdb -merge ~/.Xresources &
 
 # Start Emacs server
-emacs --daemon
+#emacs --daemon
 
 # Start awesome
 #exec ck-launch-session awesome
