@@ -248,8 +248,8 @@ for s = 1, screen.count() do
     -- if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mydl)
     right_layout:add(mycpu)
-    right_layout:add(mytextclock)
     right_layout:add(mybattery)
+    right_layout:add(mytextclock)
     right_layout:add(mylauncher)
 
     -- Now bring it all together (with the tasklist in the middle)
