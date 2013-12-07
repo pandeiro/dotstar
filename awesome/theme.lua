@@ -20,7 +20,7 @@ colors.red              = "#A61C1C" -- *
 colors.red_dark         = "#760000"
 colors.blue             = "#335e87" -- *
 colors.blue_dark        = "#223456"
-colors.green            = "#558F63"
+colors.green            = "#85BA86"
 colors.green_dark       = "#303D40"
 colors.orange           = "#BF5841" -- *
 colors.orange_dark      = "#481200"
@@ -29,7 +29,7 @@ colors.pink_dark        = "#443399"
 
 colors.base		= colors.yellow_dark
 colors.base_alt		= colors.white_dark
-colors.text		= colors.blue
+colors.text		= colors.white_dark
 colors.text_alt		= colors.green_dark
 colors.highlight	= colors.orange
 colors.highlight_alt	= colors.red
@@ -116,7 +116,7 @@ theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/defau
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper = "/home/mu/img/weendoe.jpg"
+theme.wallpaper = "/home/mu/img/airshow.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
