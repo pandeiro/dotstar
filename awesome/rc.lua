@@ -100,7 +100,40 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
+myappmenu = {
+   { "emacs      (❖ e)", "em" },
+   { "chromium   (❖ b)", "chromium" },
+   { "chromium viewport", "webapp chrome://newtab" },
+   { "xterm      (❖ <Enter>)", terminal },
+   { "gimp", "gimp" },
+   { "inkscape", "inkscape" },
+   { "libreoffice", "libreoffice" },
+   { "skype", "skype" },
+   { "gmail", "webapp gmail.com" },
+   { "deluge", "deluge" },
+   { "slsk", "nicotine" },
+   { "virtualbox", "virtualbox"}
+}
+
+myreplmenu = {
+   { "elisp",   "emacs -f ielm" },
+   { "clojure",		terminal .. " -e lein repl" },
+   { "python3",		terminal .. " -e python" },
+   { "python2",		terminal .. " -e python2" },
+   { "ruby",		terminal .. " -e irb" },
+   { "js",		terminal .. " -e js" },
+   { "nodejs",		terminal .. " -e node"},
+   { "ocaml",		terminal .. " -e ocaml"},
+   { "lua",		terminal .. " -e lua"},
+   { "scheme",		terminal .. " -e guile"},
+   { "erlang",		terminal .. " -e erl"},
+   { "haskell",		terminal .. " -e ghci"},
+   { "smalltalk",	terminal .. " -e gst"}
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+				    { "apps", myappmenu },
+				    { "repls", myreplmenu },
                                     { "suspend", "sudo pm-suspend" },
                                     { "reboot",  "sudo systemctl reboot" },
                                     { "poweroff", "sudo systemctl poweroff" }
