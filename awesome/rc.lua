@@ -310,8 +310,11 @@ globalkeys = awful.util.table.join(
     -- Additional keys for applications
     awful.key({ modkey,           }, "e",  function () awful.util.spawn('em') end),
     awful.key({ modkey,           }, "b",  function () awful.util.spawn('chromium') end),
+    awful.key({ modkey, "Shift"   }, "b",  function () awful.util.spawn('webapp') end),
 
     -- Additional keys for screen off and screenshot
+    awful.key({ modkey, "Shift"   }, "o",
+              function () awful.util.spawn('office') end),
     awful.key({ modkey,           }, "F2",
 	      function () awful.util.spawn('xterm -e xset dpms force off') end),
     awful.key({ modkey,           }, "Print",
